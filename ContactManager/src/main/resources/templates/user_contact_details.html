@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" th:replace="~{user_base::Layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title th:text="${title}"></title>
+</head>
+
+<body>
+	<section>
+		<div class="container col-md-10 offset-md-1 mr-2">
+			<div class="card">
+				<div class="card-body" th:if="${contact}">
+					<a onclick="goBack()"><i class="fa-solid fa-arrow-left fa-2x"></i></a>
+					<h2 class="text-center mb-4" style="text-decoration: underline;">Contact Details</h2>
+					<div class="container-fluid mt-1 text-center">
+						<div class="row">
+							<div class="col">
+								<img src="" th:src="@{'/images/' + ${contact.image}}" alt="No Profile Picture!" class="contact_page_profile_picture" />
+								<br>
+								<div class="table-responsive">
+									<table class="table table-striped mt-5">
+									<thead>
+										<tr>
+											<th scope="col" >Name</th>
+											<th scope="col" th:text="${contact.name}"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th scope="row">Phone</th>											
+											<td th:text="${contact.phone}"></td>										
+										</tr>
+										<tr>
+											<th scope="row">Email</th>											
+											<td th:text="${contact.email}"></td>										
+										</tr>
+										<tr>
+											<th scope="row">City</th>												
+											<td th:text="${contact.city}"></td>										
+										</tr>
+										<tr>
+											<th scope="row">Description</th>											
+											<td th:text="${contact.description}"></td>										
+										</tr>						
+									</tbody>
+								</table>
+								</div>							
+								<div class="container mt-5 p-3">
+									<form method="post" th:action="@{'/user/update-contact/' + ${contact.id}}"><button type="submit" class="btn btn-warning btn-lg">Update Contact</button></form>
+									<br>
+									<a th:onclick="|deleteContact(${contact.id})|" class="btn btn-danger btn-lg">Delete Contact</a>	
+								</div>															
+							</div>
+						</div>
+					</div>
+				</div>
+				<h1 class="text-center p-3 bg-danger" th:unless="${contact}">Error</h1>
+			</div>
+		</div>
+		<!-- SCRIPT TO MAKE LINK ACTIVE -->
+		<script>
+			$(document).ready(() =>
+			{
+				$(".item").removeClass("active-link");
+				$("#contacts-link").addClass("active-link");
+			});
+		</script>
+	</section>
+</body>
+
+</html>

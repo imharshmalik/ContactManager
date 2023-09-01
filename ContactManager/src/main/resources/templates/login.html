@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="~{base::Layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Login</title>
+</head>
+
+<body>
+	<section class="banner">
+		<div class="container">
+			<div class="row ">
+				<div class="col-md-6 offset-md-3">
+					<div class="login-card mt-4">
+						<div th:if="${session.message}" class="alert" th:classappend="${session.message.type}">
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<!-- MANAGE THYMELEAF SESSION HERE -->
+							<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+						</div>
+						<h1 class="text-center">Login</h1>
+						<form th:action="@{/login}" method="POST" id="login-form">
+							<div th:if="${param.error}" class="alert alert-danger">Invalid Username or Password</div>
+							<div th:if="${param.logout}" class="alert alert-success">Logged out</div>
+							<!-- Username input (For our application, username is email) -->
+							<div class="name-input mb-3">
+								<label>Your username:</label>
+								<input type="text" class="form-control" name="username" required>
+							</div>
+							<!-- Password input -->
+							<div class="mb-3">
+								<label>Your password:</label>
+								<input type="password" class="form-control" name="password" required>
+							</div>
+							<!-- Submit button -->
+							<div class="container text-center mb-3">
+								<button type="submit" class="btn bg-primary bt-large text-white mt-4">Login</button>
+							</div>
+							<!-- Forgot Password link -->
+							<div class="container text-center mb-3">
+								<a th:href="@{/forgot-password}" class="text-white">Forgot Password?</a>
+							</div>
+							<!-- Registration link -->
+							<div class="container text-center mb-3">
+								<a th:href="@{/signup}" class="text-white">New Here? Register First!</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

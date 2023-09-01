@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:fragment="Layout(content)">
+
+<head>
+	<meta charset="UTF-8" />
+	<title th:text="${title}"></title>
+	
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<!-- Font Awesome CSS -->
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/mystyle.css}"/>
+	<!-- JQuery JS -->
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+	
+</head>
+
+<body>
+	
+	<!--Navbar-->
+	<nav class=" fixed-top navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/}" href="#"><span class="fa fa-id-card-o"></span> Smart Contact Manager</a>
+			<div>
+				  <ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link active" th:href="@{/user/dashboard}" href="#" th:text="${#strings.toUpperCase(currentUser.name)}"></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" th:href="@{/logout}" href="#">LOGOUT</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!--END Navbar-->
+	
+	<!-- Sidebar-->
+	<div class="sidebar">
+		<span class="crossBtn" onclick="toggleSidebar()">&times;</span>
+		<a id="home-link" th:href="@{/user/dashboard}" class="item"><i class="fa-solid fa-house"></i> Home</a>
+		<a id="contacts-link" th:href="@{/user/show-contacts/1}" class="item"><i class="fa-solid fa-address-card"></i> My Contacts</a>
+		<a id="add-contact-link" th:href="@{/user/add-contact}" class="item"><i class="fa-solid fa-plus"></i> Add New Contact</a>
+		<a id="profile-link" th:href="@{/user/profile}" class="item"><i class="fa-solid fa-user"></i> My Profile</a>
+		<a id="change-password-link" th:href="@{/user/change-password}"class="item"><i class="fa-solid fa-gear"></i> Change Password</a>
+		<a href="" th:href="@{/logout}" class="item"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+	</div>
+	<!--END Sidebar-->
+	
+	<!--Content-->
+	<div class="content">
+		<i class="fas fa-bars m-3" onclick="toggleSidebar()"></i>
+		
+		<!--Message Box-->
+		<div th:if="${session.message}" class="container text-center">
+			<div class="alert" th:classappend="${session.message.type}">
+				<span th:text="${session.message.content}"></span>
+			</div>
+			<!-- MANAGE THYMELEAF SESSION HERE-->
+			<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+		</div>
+		
+		<div th:replace="${content}"></div>
+	</div>
+	<!--END Content-->
+	
+		
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+	
+	<!-- Custom JS -->
+	<script th:src="@{/js/myjs.js}"></script>
+	
+	<!-- Sweet Alert JS -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+</body>
+
+</html>

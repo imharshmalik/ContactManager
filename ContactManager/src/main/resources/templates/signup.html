@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="~{base::Layout(~{::section})}">
+<head>
+	<meta charset="UTF-8" />
+	<title>Sign Up</title>
+</head>
+<body>
+	<section class="banner">
+		<div class="container">
+			<div class="row ">
+				<div class="col-md-6 offset-md-3">
+					<div class="signup-card mt-3">
+						<div th:if="${session.message}" class="alert" th:classappend="${session.message.type}">
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<!-- MANAGE THYMELEAF SESSION HERE-->
+							<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+						</div>
+						<h1 class="text-center">Sign up</h1>
+						<form th:action="@{/handleSignup}" method="POST" th:object="${user}">
+							<!-- Name input -->
+							<div class="mb-3">
+								<label>Your name:</label>
+								<input type="text" class="form-control" th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" name="name" th:value="${user.name}" required>
+								<div class="invalid-feedback " th:each="e : ${#fields.errors('name')}" th:text="${e}"></div>
+							</div>
+							<!-- Email input -->
+							<div class="mb-3">
+								<label>Your email:</label>
+								<input type="email" class="form-control" th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}" name="email" th:value="${user.email}" required>
+								<div class="invalid-feedback " th:each="e : ${#fields.errors('email')}" th:text="${e}"></div>
+							</div>
+							<!-- Password input -->
+							<div class="mb-3">
+								<label>Your password:</label>
+								<input type="text" class="form-control" th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}" name="password" required>
+								<div class="invalid-feedback " th:each="e : ${#fields.errors('password')}" th:text="${e}"></div>
+							</div>
+							<!-- About input -->
+							<div class="mb-3">
+								<label>A little about you:</label>
+								<textarea class="form-control" rows="6" name="about" th:text="${user.about}" ></textarea>
+							</div>
+							<!-- Checkbox -->
+							<div class="form-group form-check mb-3">
+								<input type="checkbox" class="form-check-input" th:classappend="${checkbox==false ? 'is-invalid' : '' }" name="checkbox" required>
+								<label><a th:href="@{/terms}" class="text-white">Accept Terms & Conditions</a></label>
+								<div class="invalid-feedback">Tick the box</div>
+							</div>
+							<!-- Submit button -->
+							<div class="container text-center mb-3">
+								<button type="submit" class="btn bg-primary bt-large text-white mt-4">Submit</button>
+							</div>
+							<!-- Login link -->
+							<div class="container text-center mb-3">
+								<a th:href="@{/user/dashboard}" class="text-white">Existing User? Login Instead!</a>
+							</div>	
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

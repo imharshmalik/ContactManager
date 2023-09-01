@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" th:replace="~{base::Layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title th:text="${title}"></title>
+</head>
+
+<body>
+	<section class="banner">
+		<div class="container">
+			<div id="login-row" class="row text-center">
+				<div id="login-col" class="col-md-4 offset-md-4">
+					<div id="login-box" class="col-md-12 mt-5" style="height: 200px;">
+						<div class="alert alert-success" role="alert">
+							<h4>OTP Successfully Sent</h4>
+						</div>
+						<form th:action="@{/verify-otp}" method="post">
+							<div class="form-group mt-5">
+								<input required type="number" name="submittedOtp" class="form-control" placeholder="Enter OTP sent in the email" style="border: 1px solid black;"/>
+							</div>
+							<div class="form-group mt-3">
+								<button class="btn bg-primary bt-large text-white mt-4">Verify OTP</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		</div>
+	</section>
+</body>
+
+</html>

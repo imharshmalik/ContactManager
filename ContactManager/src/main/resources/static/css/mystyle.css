@@ -1,0 +1,151 @@
+body
+{
+	background: #e2e2e2 !important;
+}
+
+.bg-primary
+{
+	background: #009688 !important;
+}
+
+.banner
+{
+	width: 100%;
+	height: 93vh;
+	background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("../images/front.jpg");
+	background-size: cover;
+	color: white;
+}
+
+.login-card
+{
+	width: 80%;
+	margin-left: 40px;
+}
+
+.signup-card
+{
+	width: 80%;
+	margin-left: 40px;
+}
+
+.sidebar
+{
+	width: 18%;
+	height: 100%;
+	background: #009688;
+	position:fixed;
+	padding-top: 55px;
+	top:5%;
+}
+
+.sidebar a
+{
+	display:block;
+	width: 100%;
+	padding: 15px 25px;
+	text-decoration: none;
+	color: white;
+}
+
+.sidebar a:hover
+{
+	background: #e2e2e2;
+	color: black;
+}
+
+.sidebar .crossBtn
+{
+	color: white;
+	position: absolute;
+	top:0;
+	right:35px;
+	font-size: 36px;
+	cursor: pointer;
+}
+
+.content
+{
+	margin-left: 20%;
+	margin-top: 4%;
+}
+
+.profile_picture
+{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 1px solid black;
+}
+
+.contact_page_profile_picture
+{
+	width: 200px; 
+	height: 200px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 1px solid black;
+}
+
+.user_profile_picture
+{
+	width: 200px; 
+	height: 200px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 1px solid black;
+}
+
+.search_box_container
+{
+	position: relative;
+	border: 2px solid black;
+}
+
+.search_result
+{
+	position: absolute;
+	background: #e2e2e2;
+	border: 1px solid black;
+	width: 100%;
+	display: none;
+}
+
+.fas
+{
+	cursor: pointer;
+	display: none;
+	position: absolute;
+	font-size: 22px;
+}
+
+.fa-arrow-left
+{
+	cursor: pointer;
+	position: absolute;
+}
+
+.active-link
+{
+	background: white;
+	color: black !important;
+}
+
+
+@media only screen and (max-width: 600px)
+{
+	.sidebar
+	{
+		display: none;
+		width: 80%;
+		height: 100vh;
+		position: fixed;
+		padding-top: 20px;
+	}
+	
+	.content
+	{
+		margin-left: 0%;
+	}
+}
